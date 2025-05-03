@@ -22,7 +22,7 @@ interface Proposal {
   status: "active" | "ended";
   votesFor: number;
   votesAgainst: number;
-  _: bigint;
+  start: number;
 }
 const ProposalInfo = ({
   proposalAddress,
@@ -90,7 +90,7 @@ const ProposalInfo = ({
           status: end == 0 || end - Date.now() > 0 ? "active" : "ended",
           votesFor: yesVotes ? Number(yesVotes) : 0,
           votesAgainst: noVotes ? Number(noVotes) : 0,
-          _,
+          start: Number(_),
         };
         setP(proposal);
       };
