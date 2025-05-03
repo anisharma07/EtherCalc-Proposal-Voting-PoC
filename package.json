@@ -9,8 +9,7 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint",
-    "postbuild": "node codemod-fix-bigint.js"
+    "lint": "eslint"
   },
   "dependencies": {
     "@capacitor/app": "7.0.1",
