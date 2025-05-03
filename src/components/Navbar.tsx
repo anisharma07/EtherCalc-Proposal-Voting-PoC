@@ -1,8 +1,7 @@
 import React from "react";
-import { IonHeader, IonToolbar, IonTitle, IonCard } from "@ionic/react";
+import { IonHeader, IonToolbar, IonTitle } from "@ionic/react";
 import WalletConnectButton from "./WalletConnectButton";
 import { useHistory } from "react-router-dom";
-import ProposalModal from "./ProposalModal";
 
 const Navbar: React.FC = () => {
   const history = useHistory();

@@ -22,6 +22,7 @@ interface Proposal {
   status: "active" | "ended";
   votesFor: number;
   votesAgainst: number;
+  _: bigint;
 }
 const ProposalInfo = ({
   proposalAddress,
@@ -55,7 +56,7 @@ const ProposalInfo = ({
     // console.log("Data from useMiniOwnerInfo:", owner, yesVotes, noVotes);
     // console.log(proposalAddress);
     // console.log("Data from useMiniProposalInfo:", proposalInfo);
-    if (proposalInfo?.length > 0) {
+    if (Array.isArray(proposalInfo) && proposalInfo.length > 0) {
       //   console.log("proposalInfo from useMiniProposalInfo:", proposalInfo);
 
       //   console.log("Data from useFullProposalDetails:", data);
@@ -89,6 +90,7 @@ const ProposalInfo = ({
           status: end == 0 || end - Date.now() > 0 ? "active" : "ended",
           votesFor: yesVotes ? Number(yesVotes) : 0,
           votesAgainst: noVotes ? Number(noVotes) : 0,
+          _,
         };
         setP(proposal);
       };

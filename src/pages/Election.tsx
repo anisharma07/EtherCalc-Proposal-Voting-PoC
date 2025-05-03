@@ -68,7 +68,7 @@ const Election: React.FC = () => {
   const [p, setP] = useState<Proposal>();
 
   useEffect(() => {
-    if (proposalInfo?.length > 0) {
+    if (Array.isArray(proposalInfo) && proposalInfo.length > 0) {
       const fetchData = async () => {
         const [startTime, endTime, title, description, sheetKey] =
           proposalInfo as [bigint, bigint, string, string, string];
@@ -91,7 +91,7 @@ const Election: React.FC = () => {
   }, [proposalInfo, owner, yesVotes, noVotes, proposalAddress, freeze]);
   const handleVote = async (val: boolean) => {
     try {
-      const tx = await writeContractAsync({
+      await writeContractAsync({
         address: proposalAddress,
         abi: proposalABI,
         functionName: "vote",
@@ -99,15 +99,9 @@ const Election: React.FC = () => {
       });
 
       alert("Vote submitted!");
-    } catch (error) {
-      // Custom error handling
-      // if (error?.cause?.errorName === "AlreadyVoted") {
-      //   alert("You have already voted.");
-      // } else if (error?.cause?.errorName === "ElectionInactive") {
-      //   alert("Voting is not active.");
-      // } else {
-      //   alert("Transaction failed: " + (error?.message || "Unknown error"));
-      // }
+    } catch (err) {
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      alert("Error: " + errorMsg);
     }
   };
   const handleVoteFreeze = async () => {
@@ -119,7 +113,8 @@ const Election: React.FC = () => {
         args: [],
       });
     } catch (err) {
-      alert("Error: " + err.message);
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      alert("Error: " + errorMsg);
     }
   };
   // useEffect(() => {

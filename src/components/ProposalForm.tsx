@@ -69,7 +69,8 @@ const ProposalForm = () => {
       setEndDate("");
       setIsModalOpen(false);
     } catch (err) {
-      alert("Error: " + err.message);
+      const errorMsg = err instanceof Error ? err.message : String(err);
+      alert("Error: " + errorMsg);
     }
   };
 
