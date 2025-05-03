@@ -71,7 +71,7 @@ const Election: React.FC = () => {
     if (Array.isArray(proposalInfo) && proposalInfo.length > 0) {
       const fetchData = async () => {
         const [startTime, endTime, title, description, sheetKey] =
-          proposalInfo as [number, number, string, string, string];
+          proposalInfo as [bigint, bigint, string, string, string];
 
         const proposal: Proposal = {
           owner: owner as string,

@@ -76,8 +76,8 @@ const ProposalInfo = ({
         //   console.error("Error fetching data from IPFS:", error);
         // }
         const [_, endTime, title, description] = proposalInfo as [
-          number,
-          number,
+          bigint,
+          bigint,
           string,
           string
         ];
