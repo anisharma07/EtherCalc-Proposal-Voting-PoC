@@ -13,6 +13,6 @@ export default defineConfig({
     setupFiles: "./src/setupTests.ts",
   },
   esbuild: {
-    target: "esnext", // or "esnext"
+    target: "ESNext", // or "esnext"
   },
 });
