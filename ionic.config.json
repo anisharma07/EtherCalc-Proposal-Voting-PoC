@@ -1,0 +1,7 @@
+{
+  "name": "EtherCalcPoc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
