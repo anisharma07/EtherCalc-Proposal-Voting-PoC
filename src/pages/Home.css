@@ -1,0 +1,78 @@
+#container {
+  height: min-content;
+  overflow: hidden;
+}
+
+.custom-switch-button {
+  font-weight: bold;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-connect-button {
+  padding: 2px 4px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.custom-popover {
+  --background: transparent;
+  width: auto;
+  height: auto;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.custom-popover-button {
+  --background: var(--ion-color-danger);
+  --color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+.proposal-card {
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.proposal-card:hover {
+  transform: scale(1.02);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.card-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+.card-content .description {
+  margin: 10px 0;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.status-votes-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.votes {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.status {
+  font-size: 1rem;
+}
