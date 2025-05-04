@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { IonHeader, IonToolbar, IonTitle } from "@ionic/react";
 import WalletConnectButton from "./WalletConnectButton";
 import { useHistory } from "react-router-dom";
+import { useMyBalance } from "../hooks/proposalFactory";
 
 const Navbar: React.FC = () => {
+  const { data, isLoading } = useMyBalance();
+  useEffect(() => {
+    console.log("data", data);
+  }, [data]);
   const history = useHistory();
   return (
     <IonHeader>
@@ -20,7 +25,7 @@ const Navbar: React.FC = () => {
             onClick={() => history.push(`/`)}
             style={{ cursor: "pointer" }}
           >
-            EtherCalc Voting
+            EtherCalc Voting {data}
           </IonTitle>
           {/* <ProposalModal /> */}
           <WalletConnectButton />

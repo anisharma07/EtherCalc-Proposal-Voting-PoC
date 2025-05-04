@@ -1,5 +1,10 @@
 import { useReadContract } from "wagmi";
-import { proposalFactoryABI, proposalFactoryAddress } from "../contracts";
+import {
+  mediTokenABI,
+  mediTokenAddress,
+  proposalFactoryABI,
+  proposalFactoryAddress,
+} from "../contracts";
 // const { writeContractAsync } = useWriteContract();
 
 // Read: getAllProposals
@@ -13,9 +18,9 @@ export const useAllProposals = () =>
 // Read: getMyBalance
 export const useMyBalance = () =>
   useReadContract({
-    address: proposalFactoryAddress,
-    abi: proposalFactoryABI,
-    functionName: "getMyBalance",
+    address: mediTokenAddress,
+    abi: mediTokenABI,
+    functionName: "getUserTokens",
   });
 
 // Write: createProposal (async function)
