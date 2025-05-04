@@ -34,7 +34,6 @@ const ProposalInfo = ({
 }) => {
   const history = useHistory();
 
-  // start, end, title, desc, sheetkey
   const { proposalInfo, isLoading } = useMiniProposalInfo({
     proposalAddress: proposalAddress,
   });
@@ -47,34 +46,11 @@ const ProposalInfo = ({
   const { noVotes } = useMiniNoVotes({
     proposalAddress: proposalAddress,
   });
-  //   const { voteData, isVoting } = useVoteStatus(proposalAddress);
   const [p, setP] = useState<Proposal>();
 
   useEffect(() => {
-    // console.log("Vote Data: ", voteData);
-    // fetch title, description from ipfs
-    // console.log("Data from useMiniOwnerInfo:", owner, yesVotes, noVotes);
-    // console.log(proposalAddress);
-    // console.log("Data from useMiniProposalInfo:", proposalInfo);
     if (Array.isArray(proposalInfo) && proposalInfo.length > 0) {
-      //   console.log("proposalInfo from useMiniProposalInfo:", proposalInfo);
-
-      //   console.log("Data from useFullProposalDetails:", data);
-      //   console.log(data[0]);
       const fetchData = async () => {
-        // let jsonData = {
-        //   title: "Hello",
-        //   description: "Hello World",
-        // };
-        // try {
-        //   const ipfsHash = metaURI.replace("ipfs://", "");
-        //   const url = `https://ipfs.io/ipfs/${ipfsHash}`;
-        //   const response = await fetch(url);
-        //   jsonData = await response.json();
-        //   //   console.log("Fetched data from IPFS:", jsonData);
-        // } catch (error) {
-        //   console.error("Error fetching data from IPFS:", error);
-        // }
         const [_, endTime, title, description] = proposalInfo as [
           bigint,
           bigint,
@@ -97,10 +73,6 @@ const ProposalInfo = ({
       fetchData();
     }
   }, [proposalInfo, owner, yesVotes, noVotes, proposalAddress]);
-
-  useEffect(() => {
-    console.log(p);
-  }, [p]);
 
   if (isLoading) {
     return (

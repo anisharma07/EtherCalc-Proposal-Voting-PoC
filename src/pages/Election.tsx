@@ -10,7 +10,6 @@ import {
   IonBadge,
   IonButton,
 } from "@ionic/react";
-// Add at the top with other imports
 import { useAccount } from "wagmi";
 import {
   useFreeze,
@@ -19,10 +18,8 @@ import {
   useMiniProposalInfo,
   useMiniYesVotes,
 } from "../hooks/getProposalDataMini";
-import { proposalABI } from "../contracts";
 import { useWriteContract } from "wagmi";
-
-// ...inside your Election component...
+import { proposalABI } from "../abi/proposals/abi";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -117,11 +114,6 @@ const Election: React.FC = () => {
       alert("Error: " + errorMsg);
     }
   };
-  // useEffect(() => {
-  //   console.log(p);
-  //   console.log("Proposal Address: ", formatTimestamp(p?.start));
-  // }, [p]);
-
   if (isLoading) {
     return (
       <IonCard>
@@ -138,7 +130,6 @@ const Election: React.FC = () => {
     );
   }
 
-  // UI logic
   const now = Date.now();
   const votingOver = p.end !== 0 && p.end * 1000 < now;
 
@@ -216,7 +207,7 @@ const Election: React.FC = () => {
             {!isPending && !votingOver && (
               <>
                 {currentUser?.toLowerCase() === p.owner.toLowerCase() &&
-                  !p?.frozen && ( // owner hasn't freezed sheet yet
+                  !p?.frozen && (
                     <IonButton
                       color="warning"
                       style={{ margin: 16 }}

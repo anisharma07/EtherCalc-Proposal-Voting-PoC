@@ -10,7 +10,7 @@
 
 # production
 /dist
-
+/e2e.log
 # misc
 .DS_Store
 .env

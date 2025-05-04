@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IonInput,
   IonTextarea,
@@ -7,15 +7,23 @@ import {
   IonDatetime,
 } from "@ionic/react";
 import { add, refresh } from "ionicons/icons";
-// import { useMyBalance } from "../hooks/proposalFactory";
-// import { uploadToPinata } from "../helper/IPFS";
-import { useWriteContract } from "wagmi";
-import { proposalFactoryABI, proposalFactoryAddress } from "../contracts";
+import { useAccount, useWriteContract } from "wagmi";
 import { convertToUTCTimestamp } from "../helper/dateFormat";
+import { proposalFactoryAddress } from "../abi/contracts";
+import { proposalFactoryABI } from "../abi/proposalFactory/abi";
+import { useMyBalance } from "../hooks/useMyBalance";
 const ProposalForm = () => {
   const { writeContractAsync, isPending } = useWriteContract();
 
-  // const { getBalanceInfo, isLoading, error } = useMyBalance();
+  const { address: currentUser } = useAccount();
+  const { balance } = useMyBalance({ userAddress: currentUser });
+  const [tokens, setTokens] = useState<number>(0);
+
+  useEffect(() => {
+    if (balance) {
+      setTokens(Number(balance) / 10 ** 18);
+    }
+  }, [balance]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -29,11 +37,9 @@ const ProposalForm = () => {
     const utcEndTimestamp = convertToUTCTimestamp(endDate);
 
     try {
-      // const pinataRes = await uploadToPinata(title, description, sheetKey);
-      // console.log(
-      //   "Pinata response: https://ipfs.io/ipfs/" + pinataRes.IpfsHash
-      // );
-      // const metaURI = `ipfs://${pinataRes.IpfsHash}`;
+      if (tokens < 1) {
+        throw new Error("You need at least 1 token to create a proposal.");
+      }
       if (title == "" || description == "") {
         throw new Error("Title and description are required.");
       }
@@ -75,9 +81,8 @@ const ProposalForm = () => {
   };
 
   const loadRandomSheet = () => {
-    // Generate a random EtherCalc sheet URL
     console.log("Loading random sheet...");
-    const randomSheetId = Math.random().toString(36).substring(2, 10); // Random 8-character string
+    const randomSheetId = Math.random().toString(36).substring(2, 10);
     const key = "ethercalc-proposal-" + randomSheetId;
     setSheetKey(key);
   };
@@ -115,10 +120,10 @@ const ProposalForm = () => {
             <h3>Start Date: </h3>
 
             <IonDatetime
-              presentation="date-time" // Use "date-time" for both date and time selection
+              presentation="date-time"
               value={startDate}
               onIonChange={(e) => {
-                const selectedDate = e.detail.value as string; // Ensure the value is treated as a string
+                const selectedDate = e.detail.value as string;
                 setStartDate(selectedDate);
               }}
               style={{ marginTop: "10px" }}
@@ -126,10 +131,10 @@ const ProposalForm = () => {
             <h3>End Date: </h3>
 
             <IonDatetime
-              presentation="date-time" // Use "date-time" for both date and time selection
+              presentation="date-time"
               value={endDate}
               onIonChange={(e) => {
-                const selectedDate = e.detail.value as string; // Ensure the value is treated as a string
+                const selectedDate = e.detail.value as string;
                 setEndDate(selectedDate);
               }}
               style={{ marginTop: "10px" }}

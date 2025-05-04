@@ -1,6 +1,6 @@
 import { sepolia } from "viem/chains";
 import { useReadContract } from "wagmi";
-import { proposalABI } from "../contracts";
+import { proposalABI } from "../abi/proposals/abi";
 export const useMiniProposalInfo = ({
   proposalAddress,
 }: {
