@@ -123,6 +123,7 @@ ionic serve
 
 > Challenge Module Setup Screenshots: [link](https://drive.google.com/drive/folders/1h_TM8jj-ufg-78bkWjGKfS2Ye0khIar3?usp=drive_link)
 > EtherCalc PoC App ScreenShots: [link](https://drive.google.com/drive/folders/1sKv1Pmv7O7zLm8XTdXkL_JDk-uBaDKBQ?usp=drive_link)
+> Live Hosted link for EtherCalc: [vercel link](https://ether-calc-proposal-voting-po-c.vercel.app/home)
 > Demo Walkthrough: [video link](https://drive.google.com/file/d/181NxNKuqtQGAOCEqRugnebJde5aYwgEn/view?usp=drive_link)
 > My Experience in web 3.0 and programming: [link](https://docs.google.com/document/d/1GacsJVS_Q8gGFMu11tZDesi80rVFSZ8PQVGjR72rjeo/edit?usp=sharing)
 
