@@ -37,7 +37,7 @@ ionic serve
 ## 🏗️ Project Structure
 
 - **Ionic + React** frontend (`src/`)
-- **Smart Contracts** (see [`src/contracts.ts`](src/contracts.ts)):
+- **Deployed Contracts** (see [`src/contracts.ts`](src/contracts.ts)):
   - `ProposalFactory`: Deploys new voting proposals.
   - `Proposal`: Each proposal is a contract with voting logic.
   - `MediToken`: (from ZKMedical-Billing) for token-gated features.
