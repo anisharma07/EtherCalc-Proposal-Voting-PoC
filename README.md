@@ -3,6 +3,8 @@
 Welcome to the **EtherCalc + Web3 Voting PoC**!  
 This project demonstrates how collaborative spreadsheets (EtherCalc) and on-chain voting can work together for decentralized decision-making, grant tracking, and more.
 
+Backend Repo (smart contract): https://github.com/anisharma07/EtherCalc-Backend
+
 ---
 
 ## 🚀 Quick Start
