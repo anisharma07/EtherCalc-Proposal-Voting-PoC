@@ -115,6 +115,9 @@ ionic serve
 
 ## 🖼️ Screenshots & Demo
 
+Proposals Flow:
+![proposals](./public/screenshots/image.png)
+
 > _Please see the attached screenshots and demo videos in the project submission or [add your own here]._  
 > (You can use tools like [Screenity](https://chrome.google.com/webstore/detail/screenity-screen-recorder/...) or [Loom](https://loom.com/) for recording.)
 
