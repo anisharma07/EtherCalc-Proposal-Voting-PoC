@@ -10,7 +10,7 @@ This project demonstrates how collaborative spreadsheets (EtherCalc) and on-chai
 ### 1. ⚡️ Clone & Install
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/anisharma07/EtherCalc-Proposal-Voting-PoC.git
 cd EtherCalc-Proposal-Voting-PoC
 npm install
 ```
