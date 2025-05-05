@@ -117,7 +117,7 @@ ionic serve
 
 ## 🖼️Proposals Flow:
 
-![proposals](./public/screenshots/image.png)
+![proposals](./public/screenshots/proposal-flow.png)
 
 ---
 
