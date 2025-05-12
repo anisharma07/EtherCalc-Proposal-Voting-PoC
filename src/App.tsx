@@ -18,7 +18,7 @@ import React from "react";
 import { WagmiProvider } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"; // <-- Add this import
 import Election from "./pages/Election";
@@ -37,23 +37,13 @@ const App: React.FC = () => (
     {" "}
     <WagmiProvider config={config}>
       <RainbowKitProvider>
+        <Navbar />
         <Router>
-          <Route exact path="/home">
-            <Navbar />
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/election/:electionId">
-            <Navbar />
-
-            <Election />
-          </Route>
           <Route exact path="/election">
-            <Navbar />
-
             <Election />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/home" />
           </Route>
         </Router>
       </RainbowKitProvider>

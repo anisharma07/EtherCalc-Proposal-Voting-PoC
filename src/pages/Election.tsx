@@ -9,6 +9,8 @@ import {
   IonNote,
   IonBadge,
   IonButton,
+  IonPage,
+  IonContent,
 } from "@ionic/react";
 import { useAccount } from "wagmi";
 import {
@@ -134,151 +136,157 @@ const Election: React.FC = () => {
   const votingOver = p.end !== 0 && p.end * 1000 < now;
 
   return (
-    <IonCard style={{ overflow: "auto", borderRadius: "12px", margin: "16px" }}>
-      <IonCardHeader
-        style={{
-          display: "flex",
-          width: "100%",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          padding: "32px 24px 16px 24px",
-          borderRadius: "12px 12px 0 0",
-          border: "1px solid #ccc",
-        }}
-      >
-        <div>
-          <IonCardTitle
-            style={{
-              fontSize: "2rem",
-              fontWeight: 700,
-              marginBottom: 8,
-              color: "#fff",
-              letterSpacing: "0.5px",
-            }}
-          >
-            {p.title}
-          </IonCardTitle>
-          <IonNote
-            style={{
-              display: "block",
-              fontSize: "1rem",
-              color: "#f5f5f5",
-              marginBottom: 12,
-
-              fontWeight: 400,
-            }}
-          >
-            Owner:{" "}
-            <b style={{ color: "#dddddd", fontWeight: 600 }}>
-              {p?.owner.substring(0, 12) + "..."}
-            </b>
-          </IonNote>
-          <IonNote
-            style={{
-              display: "block",
-              fontSize: "1.1rem",
-              color: "#f5f5f5",
-              fontWeight: 500,
-              lineHeight: 1.5,
-            }}
-          >
-            Description: {p.description}
-          </IonNote>
-        </div>
-        <div>
-          <IonBadge color="primary" style={{ margin: 16, padding: 10 }}>
-            Start Date: {formatTimestamp(p.start)}
-          </IonBadge>
-          <IonBadge color="primary" style={{ margin: 16, padding: 10 }}>
-            End Date: {formatTimestamp(p.end)}
-          </IonBadge>
-        </div>
-      </IonCardHeader>
-      <IonCardContent>
-        {p.start * 1000 - Date.now() <= 0 && (
-          <div>
-            {isPending && (
-              <IonButton color="medium" style={{ margin: 16 }} disabled={true}>
-                Processing...
-              </IonButton>
-            )}
-
-            {!isPending && !votingOver && (
-              <>
-                {currentUser?.toLowerCase() === p.owner.toLowerCase() &&
-                  !p?.frozen && (
-                    <IonButton
-                      color="warning"
-                      style={{ margin: 16 }}
-                      onClick={handleVoteFreeze}
-                    >
-                      Freeze Sheet
-                    </IonButton>
-                  )}
-                <IonButton
-                  color="success"
-                  style={{ margin: 16 }}
-                  onClick={() => handleVote(true)}
-                >
-                  Vote For
-                </IonButton>
-                <IonButton
-                  color="danger"
-                  style={{ margin: 16 }}
-                  onClick={() => handleVote(false)}
-                >
-                  Vote Against
-                </IonButton>
-              </>
-            )}
-            <IonBadge
-              color={votingOver ? "danger" : "success"}
-              style={{ margin: 16, position: "absolute", right: 16 }}
-            >
-              {votingOver ? "Voting is over" : "Voting in progress"}
-            </IonBadge>
-          </div>
-        )}
-        <div
+    <IonPage style={{ marginTop: "50px" }}>
+      <IonContent className="ion-padding">
+        <IonCardHeader
           style={{
-            marginTop: 16,
-            fontSize: "1rem",
+            display: "flex",
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            padding: "32px 24px 16px 24px",
+            borderRadius: "12px 12px 0 0",
+            border: "1px solid #ccc",
           }}
         >
-          <p style={{ fontSize: "1.2rem", fontWeight: 600 }}>
-            ✅ <b>{p.votesFor}</b> &nbsp; | &nbsp; ❌ <b>{p.votesAgainst}</b>
-          </p>
-        </div>
-      </IonCardContent>
-      <div style={{ position: "relative", width: "80%", margin: "auto" }}>
-        {p?.frozen && (
+          <div>
+            <IonCardTitle
+              style={{
+                fontSize: "2rem",
+                fontWeight: 700,
+                marginBottom: 8,
+                color: "#fff",
+                letterSpacing: "0.5px",
+              }}
+            >
+              {p.title}
+            </IonCardTitle>
+            <IonNote
+              style={{
+                display: "block",
+                fontSize: "1rem",
+                color: "#f5f5f5",
+                marginBottom: 12,
+
+                fontWeight: 400,
+              }}
+            >
+              Owner:{" "}
+              <b style={{ color: "#dddddd", fontWeight: 600 }}>
+                {p?.owner.substring(0, 12) + "..."}
+              </b>
+            </IonNote>
+            <IonNote
+              style={{
+                display: "block",
+                fontSize: "1.1rem",
+                color: "#f5f5f5",
+                fontWeight: 500,
+                lineHeight: 1.5,
+              }}
+            >
+              Description: {p.description}
+            </IonNote>
+          </div>
+          <div>
+            <IonBadge color="primary" style={{ margin: 16, padding: 10 }}>
+              Start Date: {formatTimestamp(p.start)}
+            </IonBadge>
+            <IonBadge color="primary" style={{ margin: 16, padding: 10 }}>
+              End Date: {formatTimestamp(p.end)}
+            </IonBadge>
+          </div>
+        </IonCardHeader>
+        <IonCardContent>
+          {p.start * 1000 - Date.now() <= 0 && (
+            <div>
+              {isPending && (
+                <IonButton
+                  color="medium"
+                  style={{ margin: 16 }}
+                  disabled={true}
+                >
+                  Processing...
+                </IonButton>
+              )}
+
+              {!isPending && !votingOver && (
+                <>
+                  {currentUser?.toLowerCase() === p.owner.toLowerCase() &&
+                    !p?.frozen && (
+                      <IonButton
+                        color="warning"
+                        style={{ margin: 16 }}
+                        onClick={handleVoteFreeze}
+                      >
+                        Freeze Sheet
+                      </IonButton>
+                    )}
+                  <IonButton
+                    color="success"
+                    style={{ margin: 16 }}
+                    onClick={() => handleVote(true)}
+                  >
+                    Vote For
+                  </IonButton>
+                  <IonButton
+                    color="danger"
+                    style={{ margin: 16 }}
+                    onClick={() => handleVote(false)}
+                  >
+                    Vote Against
+                  </IonButton>
+                </>
+              )}
+              <IonBadge
+                color={votingOver ? "danger" : "success"}
+                style={{ margin: 16, position: "absolute", right: 16 }}
+              >
+                {votingOver ? "Voting is over" : "Voting in progress"}
+              </IonBadge>
+            </div>
+          )}
           <div
             style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              zIndex: 2,
-              background: "rgba(255,255,255,0.0)", // transparent
-              cursor: "not-allowed",
+              marginTop: 16,
+              fontSize: "1rem",
             }}
-          />
-        )}
-        <iframe
-          src={`https://ethercalc.net/${p.sheetKey}`}
-          title="EtherCalc Sheet"
-          style={{
-            width: "100%",
-            minHeight: "80vh",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            pointerEvents: p?.frozen ? "none" : "auto", // optional extra
-          }}
-        ></iframe>
-      </div>
-    </IonCard>
+          >
+            <p style={{ fontSize: "1.2rem", fontWeight: 600 }}>
+              ✅ <b>{p.votesFor}</b> &nbsp; | &nbsp; ❌ <b>{p.votesAgainst}</b>
+            </p>
+          </div>
+        </IonCardContent>
+        <div style={{ position: "relative", width: "80%", margin: "auto" }}>
+          {p?.frozen && (
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                zIndex: 2,
+                background: "rgba(255,255,255,0.0)", // transparent
+                cursor: "not-allowed",
+              }}
+            />
+          )}
+          <iframe
+            src={`https://ethercalc.net/${p.sheetKey}`}
+            title="EtherCalc Sheet"
+            style={{
+              width: "100%",
+              minHeight: "80vh",
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              pointerEvents: p?.frozen ? "none" : "auto", // optional extra
+            }}
+          ></iframe>
+        </div>
+      </IonContent>
+    </IonPage>
   );
 };
 

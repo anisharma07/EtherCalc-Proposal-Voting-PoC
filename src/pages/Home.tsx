@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         {isLoading && <p>Loading...</p>}
         {error && <p>Error: {error.message}</p>}
         {proposalsAddresses &&
-          proposalsAddresses.map((p, index) => {
+          [...proposalsAddresses].reverse().map((p, index) => {
             return (
               <ProposalInfo key={index} proposalAddress={p} index={index} />
             );
